@@ -1,3 +1,18 @@
+:root {
+  --dark-grey: #222;
+  --grey: #444;
+  --light-grey: #F2F2F2;
+
+  --white: #fff;
+  --black: #222;
+}
+
+@import "./styles/size.css";
+@import "./styles/flex.css";
+@import "./styles/text.css";
+/* Sections */
+@import "./styles/gradient-section.css";
+
 html,
 html * {
   margin: 0;
@@ -8,113 +23,27 @@ html * {
   clear: both;
 }
 
-:root {
-  --dark-grey: #222;
-  --grey: #444;
-  --light-grey: #666;
-
-  --white: #eee;
-
-  --orange: #ff853e;
-
-  --xs: 12px;
-  --sm: 14px;
-  --base: 16px;
-  --md: 18px;
-  --lg: 32px;
-  --xl: 48px;
-}
-
 html {
-  background-color: var(--dark-grey);
-  color: var(--white);
+  --font-size-factor: 0.0125;
+  --min-font-size: 13px;
+
+  background-color: var(--light-grey);
+  color: var(--black);
 
   font-family: Arial, Helvetica, sans-serif;
-  font-size: var(--base);
+  font-size: max(calc(100vw * var(--font-size-factor)), var(--min-font-size));
   scroll-behavior: smooth;
 }
-/* DEMO */
-.page_slide {
-  height: 100vh;
+
+body article {
+  width: 100vw;
   overflow: hidden;
 }
-/* Animations */
-.animation_text-scroll-gradient section {
-  transition: all .1s ease;
-  position: relative;
-  color: white;
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-  background-image: linear-gradient(var(--white), var(--dark-grey) 20%, var(--orange));
-  background-size: 100% 99vh;
-  background-position: inherit;
+
+@media screen and (max-width: 640px) {
+  html {
+    --font-size-factor: 0.025;
+    --min-font-size: 11px;
+  }
 }
 
-.letter-o-animation {
-  display: flex;
-}
-
-.letter-o_cover:before {
-  content: '';
-  display: inline-block;
-  height: var(--letterHeight);
-  min-height: 0.4em;
-  width: var(--letterWidth);
-  min-width: 0.32em;
-  border: .08em solid currentColor;
-  border-radius: var(--letterHeight, .4em);
-  transition: all .1s ease;
-}
-
-/* Content */
-.flex {
-  display: flex;
-}
-
-.flex-col {
-  flex-direction: column;
-}
-
-.horizontal-center {
-  justify-content: center;
-}
-
-.vertical-center {
-  align-items: center;
-}
-
-.flex-col.horizontal-center {
-  align-items: center;
-}
-
-.flex-col.vertical-center {
-  justify-content: center;
-}
-/* Text */
-.text-center {
-  text-align: center;
-}
-.text-larger {
-  font-size: 1.5em;
-}
-.text-smaller {
-  font-size: .8em;
-}
-.text-xs {
-  font-size: var(--xs);
-}
-.text-sm {
-  font-size: var(--sm);
-}
-.text-base {
-  font-size: var(--base);
-}
-.text-md {
-  font-size: var(--md);
-}
-.text-lg {
-  font-size: var(--lg);
-}
-.text-xl {
-  font-size: var(--xl);
-}

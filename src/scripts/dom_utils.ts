@@ -1,4 +1,4 @@
-const getElementReact = (el) => {
+export const getElementReact = (el) => {
   if (el == null) {
     return null;
   }
@@ -6,7 +6,7 @@ const getElementReact = (el) => {
   el.getBoundingClientRect();
 };
 
-const observElement = (el, callback, visibilityValues = [1]) => {
+export const observElement = (el, callback, visibilityValues = [1]) => {
   const options = {
     root: null,
     rootMargin: "",
@@ -15,5 +15,3 @@ const observElement = (el, callback, visibilityValues = [1]) => {
   const observer = new IntersectionObserver(callback, options);
   observer.observe(el);
 };
-
-window.observElement = observElement;

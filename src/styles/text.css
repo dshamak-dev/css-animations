@@ -1,0 +1,45 @@
+:root {
+  --base: 16px;  
+
+  --xs: calc(1rem * 0.6);
+  --sm: calc(1rem * 0.8);
+  --md: calc(1rem * 1.2);
+  --lg: calc(1rem * 2);
+  --xl: calc(1rem * 3);
+  --2xl: calc(1rem * 6);
+  --3xl: calc(var(--2xl) * 2);
+}
+
+html {
+  & .text-center {
+    text-align: center;
+  }
+  & .text-larger {
+    font-size: 1.5em;
+  }
+  & .text-smaller {
+    font-size: .8em;
+  }
+  & .text-xs {
+    font-size: var(--xs);
+  }
+  & .text-sm {
+    font-size: var(--sm);
+  }
+  & .text-base {
+    font-size: var(--base);
+  }
+  & .text-md {
+    font-size: var(--md);
+  }
+  & .text-lg {
+    font-size: var(--lg);
+  }
+  & .text-xl {
+    font-size: var(--xl);
+  }
+  
+  & .uppercase {
+    text-transform: uppercase;
+  }
+}
