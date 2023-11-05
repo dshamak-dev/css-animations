@@ -39,7 +39,7 @@ module.exports = (env) => {
           use: ['style-loader', 'css-loader', 'postcss-loader'],
         },
         {
-          test: /\.(js)$/,
+          test: /\.([tj]s)$/,
           exclude: /node_modules/,
           enforce: 'pre',
           use: ['babel-loader', 'source-map-loader'],
