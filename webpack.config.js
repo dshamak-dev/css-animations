@@ -1,10 +1,13 @@
 const path = require("path");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
+const MiniCssExtractPlugin = require("mini-css-extract-plugin");
+const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
+
 
 module.exports = (env) => {
   const rootFolder = "docs";
 
-  console.log("Production: ", env);
+  const isDevMode = !env.production;
 
   return {
     entry: "./src/index.ts",
@@ -15,7 +18,7 @@ module.exports = (env) => {
       asyncChunks: true,
       path: path.resolve(__dirname, rootFolder),
       clean: true,
-      publicPath: "/",
+      publicPath: "./",
     },
     devtool: "source-map",
     devServer: {
@@ -27,16 +30,21 @@ module.exports = (env) => {
       },
       port: 8008,
     },
-    plugins: [
+    plugins: [].concat(isDevMode ? [] : [new MiniCssExtractPlugin()], [
       new HtmlWebpackPlugin({
         template: path.join(__dirname, "index.html"),
       }),
-    ],
+    ]),
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: ["style-loader", "css-loader", "postcss-loader"],
+          use: [
+            isDevMode ? "style-loader" : MiniCssExtractPlugin.loader,
+            ,
+            "css-loader",
+            "postcss-loader",
+          ],
         },
         {
           test: /\.([tj]s)$/,
@@ -63,6 +71,7 @@ module.exports = (env) => {
       splitChunks: {
         chunks: "async",
       },
+      minimizer: [new CssMinimizerPlugin()],
     },
   };
 };
