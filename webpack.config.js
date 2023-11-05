@@ -1,65 +1,57 @@
-const path = require("path");
-const HtmlWebpackPlugin = require("html-webpack-plugin");
-const MiniCssExtractPlugin = require("mini-css-extract-plugin");
-const CssMinimizerPlugin = require("css-minimizer-webpack-plugin");
-
+const path = require('path');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
 
 module.exports = (env) => {
-  const rootFolder = "docs";
+  const rootFolder = 'public';
 
-  const isDevMode = !env.production;
+  console.log('Production: ', env);
 
   return {
-    entry: "./src/index.ts",
+    entry: './src/index.ts',
     output: {
-      chunkFilename: "[name].[contenthash].js",
-      filename: "[name].[contenthash].js",
-      assetModuleFilename: "[name].[contenthash][ext][query]",
+      chunkFilename: '[name].[contenthash].js',
+      filename: '[name].[contenthash].js',
+      assetModuleFilename: '[name].[contenthash][ext][query]',
       asyncChunks: true,
       path: path.resolve(__dirname, rootFolder),
       clean: true,
-      publicPath: "./",
+      publicPath: '/',
     },
-    devtool: "source-map",
+    devtool: 'source-map',
     devServer: {
       static: {
         directory: path.join(__dirname, rootFolder),
       },
       historyApiFallback: {
-        index: "/",
+        index: '/'
       },
       port: 8008,
     },
-    plugins: [].concat(isDevMode ? [] : [new MiniCssExtractPlugin()], [
+    plugins: [
       new HtmlWebpackPlugin({
-        template: path.join(__dirname, "index.html"),
+        template: path.join(__dirname, 'index.html'),
       }),
-    ]),
+    ],
     module: {
       rules: [
         {
           test: /\.css$/i,
-          use: [
-            isDevMode ? "style-loader" : MiniCssExtractPlugin.loader,
-            ,
-            "css-loader",
-            "postcss-loader",
-          ],
+          use: ['style-loader', 'css-loader', 'postcss-loader'],
         },
         {
-          test: /\.([tj]s)$/,
+          test: /\.(js)$/,
           exclude: /node_modules/,
-          enforce: "pre",
-          use: ["babel-loader", "source-map-loader"],
+          enforce: 'pre',
+          use: ['babel-loader', 'source-map-loader'],
         },
       ],
     },
     resolve: {
       alias: {
-        src: "/src",
+        src: '/src',
       },
-      modules: [path.resolve("./node_modules"), path.resolve("./src")],
-      extensions: [".*", ".js", ".ts"],
+      modules: [path.resolve('./node_modules'), path.resolve('./src')],
+      extensions: ['.*', '.js', '.ts'],
     },
     stats: {
       children: true,
@@ -69,9 +61,8 @@ module.exports = (env) => {
       usedExports: false,
       minimize: true,
       splitChunks: {
-        chunks: "async",
+        chunks: 'async',
       },
-      minimizer: [new CssMinimizerPlugin()],
     },
   };
 };
