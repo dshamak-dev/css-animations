@@ -3,7 +3,7 @@ const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require("mini-css-extract-plugin");
 
 module.exports = (env) => {
-  const rootFolder = "public";
+  const rootFolder = "docs";
 
   console.log("Production: ", env);
 
