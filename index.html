@@ -1,34 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CSS Animations</title>
-  <link rel="stylesheet" href="./src/styles.css">
-</head>
-<body>
-  <main id="root">
-    <div id="welcome-section" class="page_slide flex flex-col horizontal-center vertical-center">
-      <article class="text-xl text-center">
-        <section>
-          <p class="text-larger">Lorem Ipsum</p>
-          <p class="text-smaller"><i>Neque porro quisquam est qui dolorem ipsum quia dolor<br />sit amet, consectetur, adipisci velit...</i></p>
-        </section>
-      </article>
-    </div>
-    <div id="intro-section" class="page_slide flex flex-col horizontal-center vertical-center text-lg">
-      <article>
-        <section data-letter-animation>Lorem ipsum</section>
-        <section data-letter-animation>dolor sit</section>
-      </article>
-    </div>
-    <div id="payment-section" class="page_slide flex flex-col horizontal-center vertical-center text-lg">
-      <article>
-        <section>incert a coin to continue..</section>
-      </article>
-    </div>
-  </main>
-  <script defer src="./src/index.js"></script>
-</body>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CSS Animations</title>
+  </head>
+  <body>
+    <article class="text-xl text-center w-full">
+      <section id="gradient" class="h-screen flex flex-col items-center justify-center">
+        <div id="subtitle">
+          <h4 class="uppercase"><span>css</span><span>html</span></h4>
+        </div>
+        <div id="gradient-title" class="flex justify-center">
+          <h2 class="uppercase text-center">gradient</h2>
+        </div>
+        <div id="palette">
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+          <div class="palette-color"></div>
+        </div>
+      </section>
+    </article>
+  </body>
 </html>
