@@ -1,0 +1,32 @@
+#scroll-text-section {
+  display: flex;
+  flex-direction: column;
+  gap: 8rem;
+  padding: 2rem 0 50vh 0;
+
+  & .scroll-text {
+    --offset: 0px;
+    -scale: 1;
+    --opacity: 1;
+
+    position: relative;
+    font-size: 6rem;
+
+    &:before {
+      content: attr(data-text);
+      opacity: 0;
+    }
+    &:after {
+      content: attr(data-text);
+      position: absolute;
+      left: 0;
+
+      width: 100%;
+      height: 100%;
+
+      transform: translateY(var(--offset)) scale(var(--scale));
+      opacity: var(--opacity);
+      trasition: transform 0.1s ease, opacity 0.1s ease;
+    }
+  }
+}

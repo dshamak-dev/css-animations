@@ -6,7 +6,7 @@ export const getElementReact = (el) => {
   el.getBoundingClientRect();
 };
 
-export const observElement = (el, callback, visibilityValues = [1]) => {
+export const observeElement = (el, callback, visibilityValues = [1]) => {
   const options = {
     root: null,
     rootMargin: "",
