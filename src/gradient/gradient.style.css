@@ -1,0 +1,102 @@
+@keyframes rotation {
+  0% {
+    transform: rotateZ(var(--start-angle));
+  }
+  100% {
+    transform: rotateZ(var(--end-angle));
+  }
+}
+
+#gradient {
+  position: relative;
+  height: 90vh;
+  height: 90dvh;
+
+  & #subtitle {
+    position: relative;
+    right: -1em;
+    z-index: 1;
+
+    display: flex;
+    align-items: center;
+
+    margin-top: -4em;
+
+    font-size: var(--lg);
+    
+    padding: 0.4em;
+    border: 2px solid var(--white);
+
+    & h4 {
+      width: 4em;
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-start;
+      
+      text-align: left;
+      letter-spacing: 0.8em;
+      transform: translateX(0.5em);
+      color: var(--white);
+    }
+
+    @media screen and (max-width: 640px) { 
+      border-width: 1px;
+      font-size: var(--md);
+    }
+  }
+
+  & #gradient-title {
+    max-width: 90vw;
+    box-sizing: border-box;
+    padding: 1rem 2rem;
+    border: 0.25rem solid var(--white);
+    background: linear-gradient(90deg, rgba(var(--color1), 0.4) 0%, rgba(var(--color2), 0.4) 45%, rgba(var(--color3), 0.4) 100%);
+  
+    & h2 {
+      position: relative;
+      z-index: 1;
+      font-size: var(--2xl);
+      letter-spacing: 0.8em;
+      transform: translateX(0.4em);
+    }
+
+    @media screen and (max-width: 640px) {
+
+      & h2 {
+        font-size: calc(var(--xl) * 1.5);
+        word-break: break-all;
+        letter-spacing: 0.6em;
+      }
+    }
+  }
+
+  & #palette {
+    position: absolute;
+    z-index: 0;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    & .palette-color {
+      --radius: 30vw;
+
+      position: absolute;
+
+      border-radius: var(--radius);
+      width: 90vh;
+      height: 30vh;
+      background: radial-gradient(50% 50% at 50% 50%, rgba(var(--color), 0.8) 0%, rgba(var(--color), 0.1) 100%);
+      animation-name: rotation;
+      animation-duration: var(--duration);
+      animation-iteration-count: infinite;
+    }
+
+    @media screen and (max-width: 640px) {
+      & .palette-color {
+        width: 80vh;
+        height: 20vh;
+      }
+    }
+  }
+}
