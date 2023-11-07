@@ -81,17 +81,17 @@ __webpack_require__.r(__webpack_exports__);
     var screenYCenter = screenHeight / 2;
     var handleUpdateTextElement = function (el) {
         var rect = el.getBoundingClientRect();
-        var tillCenter = rect.top - screenYCenter;
+        var tillCenter = (rect.top % screenHeight) - screenYCenter;
         var deltaY = Math.abs(tillCenter);
         var scale = tillCenter > screenYCenter ? 0 : Math.abs(1 - deltaY / screenYCenter);
         var opacity = scale % 1;
         el.setAttribute('style', "--scale: ".concat(scale, "; --opacity: ").concat(opacity, ";"));
     };
-    textElList.forEach(handleUpdateTextElement);
     document.addEventListener('scroll', function (e) {
         textElList.forEach(handleUpdateTextElement);
     });
     rootEl.append(sectionEl);
+    textElList.forEach(handleUpdateTextElement);
 });
 
 ;// CONCATENATED MODULE: ./src/parallax/parallax-image.webp
@@ -105,9 +105,38 @@ __webpack_require__.r(__webpack_exports__);
     var sectionEl = document.createElement("section");
     sectionEl.setAttribute("id", id);
     var imageEl = document.createElement("div");
-    imageEl.classList.add('parallax-image');
-    imageEl.style.backgroundImage = "url(".concat(parallax_image.url, ")");
+    imageEl.classList.add("parallax-image");
+    imageEl.style.backgroundImage = "url(".concat(parallax_image, ")");
     sectionEl.append(imageEl);
+    var cloudCoverEl = document.createElement("div");
+    cloudCoverEl.classList.add("parallax-cloud-cover");
+    var clouds = [];
+    for (var i = 0; i < 3; i++) {
+        var cloudEl = document.createElement("div");
+        cloudEl.classList.add("parallax-cloud");
+        cloudCoverEl.append(cloudEl);
+        clouds.push(cloudEl);
+    }
+    var screenHeight = screen.availHeight;
+    var screenYCenter = screenHeight / 2;
+    var factors = [0.8, 0.4, 0.6];
+    var handleScroll = function (elements) {
+        var _a;
+        var scrollTop = ((_a = document.scrollingElement) === null || _a === void 0 ? void 0 : _a.scrollTop) || 0;
+        var rect = cloudCoverEl.getBoundingClientRect();
+        var topPos = rect.top;
+        var tillCenter = topPos;
+        // console.log({ rect, topPos, scrollTop, screenYCenter, tillCenter });
+        elements.forEach(function (el, index) {
+            var factor = factors[index % factors.length];
+            var offset = topPos * -factor;
+            el.setAttribute("style", "--offset: ".concat(offset, "px;"));
+        });
+    };
+    document.addEventListener("scroll", function (e) {
+        handleScroll(clouds);
+    });
+    sectionEl.append(cloudCoverEl);
     rootEl.append(sectionEl);
 });
 
@@ -122,4 +151,4 @@ parallax_script();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.14b2045612a771809af9.js.map
+//# sourceMappingURL=main.6c1aa4a8fc87aaf08c9f.js.map
