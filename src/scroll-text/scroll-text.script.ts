@@ -28,7 +28,7 @@ export default () => {
 
   const handleUpdateTextElement = (el) => {
     const rect = el.getBoundingClientRect();
-    const tillCenter = rect.top - screenYCenter;
+    const tillCenter = (rect.top % screenHeight) - screenYCenter;
     const deltaY = Math.abs(tillCenter);
     const scale = tillCenter > screenYCenter ? 0 : Math.abs(1 - deltaY / screenYCenter);
     const opacity = scale % 1;
@@ -36,11 +36,11 @@ export default () => {
     el.setAttribute('style', `--scale: ${scale}; --opacity: ${opacity};`);
   };
 
-  textElList.forEach(handleUpdateTextElement);
-
   document.addEventListener('scroll', (e) => {
     textElList.forEach(handleUpdateTextElement);
   });
 
   rootEl.append(sectionEl);
+
+  textElList.forEach(handleUpdateTextElement);
 };

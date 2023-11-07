@@ -94,13 +94,32 @@ __webpack_require__.r(__webpack_exports__);
     rootEl.append(sectionEl);
 });
 
+;// CONCATENATED MODULE: ./src/parallax/parallax-image.webp
+/* harmony default export */ const parallax_image = ("img/parallax-image.webp");
+;// CONCATENATED MODULE: ./src/parallax/parallax.script.ts
+
+
+/* harmony default export */ const parallax_script = (function () {
+    var rootEl = document.getElementById("root");
+    var id = "parallax-section";
+    var sectionEl = document.createElement("section");
+    sectionEl.setAttribute("id", id);
+    var imageEl = document.createElement("div");
+    imageEl.classList.add('parallax-image');
+    imageEl.style.backgroundImage = "url(".concat(parallax_image.url, ")");
+    sectionEl.append(imageEl);
+    rootEl.append(sectionEl);
+});
+
 ;// CONCATENATED MODULE: ./src/index.ts
+
 
 
 
 gradient_script();
 scroll_text_script();
+parallax_script();
 
 /******/ })()
 ;
-//# sourceMappingURL=main.cfa7a6c5041c2906556e.js.map
+//# sourceMappingURL=main.14b2045612a771809af9.js.map

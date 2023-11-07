@@ -8,7 +8,10 @@ module.exports = (env) => {
 
   const rootFolder = isDevMode ? "./" : "docs";
 
-  console.log({ env, isDevMode, rootFolder });
+  const htmlPlugin = new HtmlWebpackPlugin({
+    template: path.join(__dirname, "index.html"),
+    favicon: path.join(__dirname, "favicon.ico"),
+  });
 
   return {
     entry: "./src/index.ts",
@@ -32,17 +35,8 @@ module.exports = (env) => {
       port: 8008,
     },
     plugins: isDevMode
-      ? [
-          new HtmlWebpackPlugin({
-            template: path.join(__dirname, "index.html"),
-          }),
-        ]
-      : [
-          new MiniCssExtractPlugin(),
-          new HtmlWebpackPlugin({
-            template: path.join(__dirname, "index.html"),
-          }),
-        ],
+      ? [htmlPlugin]
+      : [new MiniCssExtractPlugin(), htmlPlugin],
     module: {
       rules: [
         {
@@ -63,6 +57,19 @@ module.exports = (env) => {
           exclude: /node_modules/,
           enforce: "pre",
           use: ["babel-loader", "source-map-loader"],
+        },
+        {
+          test: /\.(jpg|png|gif|webp)$/,
+          use: [
+            {
+              loader: "file-loader",
+              options: {
+                name: "[name].[ext]",
+                outputPath: "img/",
+                publicPath: "img/",
+              },
+            },
+          ],
         },
       ],
     },
