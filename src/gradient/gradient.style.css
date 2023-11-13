@@ -85,7 +85,7 @@
 
       border-radius: var(--radius);
       width: 90vh;
-      height: 30vh;
+      height: 40vh;
       background: radial-gradient(50% 50% at 50% 50%, rgba(var(--color), 0.8) 0%, rgba(var(--color), 0.1) 100%);
       animation-name: rotation;
       animation-duration: var(--duration);
